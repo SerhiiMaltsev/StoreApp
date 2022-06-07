@@ -10,8 +10,7 @@ import { UserContext} from '../../Contexts/userContext';
 function Profile(props) {
   
   const { user, setUser } = useContext(UserContext);
-  const name = user
-  console.log(UserContext)
+  
   const [userProducts, setUserProducts] = useState({})
   // useEffect(() =>{
   //   axios.get(`users/`)
