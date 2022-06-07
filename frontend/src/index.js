@@ -19,12 +19,11 @@ render(
     <BrowserRouter >
           <Routes>
             <Route path='/' element={<App/>}/>
-            <Route path='/Home' element={<Home/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/shoppingcart' element={<ShoppingCart/>}/>
+            <Route path='login/registration' element={<Registration/>}/>
             <Route path='/registration' element={<Registration/>}/>
-            <Route path='/registration/Home' element={<Home/>}/>
           </Routes>
       </BrowserRouter>
     </UserProvider>,
