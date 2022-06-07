@@ -1,33 +1,31 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import {Box, Grid, Paper, Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, Button, TextField} from '@mui/material';
+import {useNavigate} from 'react-router-dom'
+import { UserContext} from '../../Contexts/userContext';
+import React, { useState, useEffect, useRef, useContext } from "react";
 
 export default function ButtonAppBar() {
-  
+
   return (
     <Box>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor:'#F84C1E'}}>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{color:'#232D4B', marginRight: "125px"}}>
+          Welcome to UVA Market Place
+        </Typography> <br></br>
+        {user==='Guest User' &&
+          <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
+        }
+        <Button onClick={homeClick} color="inherit" sx={{color:'#232D4B'}}>Home</Button>
+        <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
+        <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
+        <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button>
+        <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
+
+        {user!=='Guest User' &&
+          <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B'}}>Logout</Button>
+        }
+      </Toolbar>
+    </AppBar>
     </Box>
   );
 }
