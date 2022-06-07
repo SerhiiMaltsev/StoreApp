@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import CheckoutForm from "./CheckoutForm";
+import "./ShoppingCart.css";
 
 function ShoppingCart() {
   return (
-    <div>ShoppingCart</div>
-  )
+    <div className="App">
+      <CheckoutForm/>
+    </div>
+  );
 }
 
-export default ShoppingCart
+
+export default ShoppingCart;
