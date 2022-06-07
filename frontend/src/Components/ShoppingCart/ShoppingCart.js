@@ -1,8 +1,11 @@
 import React from 'react'
+import ButtonAppBar from '../Navbar/Navbar.js'
 
 function ShoppingCart() {
   return (
-    <div>ShoppingCart</div>
+    <div>
+      <ButtonAppBar/>
+    </div>
   )
 }
 

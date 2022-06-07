@@ -5,7 +5,7 @@ import uuid from "react-uuid"
 import ButtonAppBar from "../Navbar/Navbar.js"
 import ClippedDrawer from "./SideBar.js"
 
-function Profile() {
+function Home() {
 
   var product = {name: "product", price: "$100.00"}
   var shoppingCart = []
@@ -27,4 +27,4 @@ function Profile() {
   )
 }
 
-export default Profile
+export default Home
