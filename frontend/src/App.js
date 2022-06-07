@@ -3,6 +3,8 @@ import Login from "./Components/Login/Login.js"
 import Home from "./Components/Home/Home.js"
 import Profile from "./Components/Profile/Profile.js"
 import ShoppingCart from "./Components/ShoppingCart/ShoppingCart.js"
+import {useTheme} from '@mui/material/styles'
+
 
 function App() {
   return (
