@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { UserContext} from '../../Contexts/userContext';
 import Home from "../Home/Home.js"
 
+
 function Login() {
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -54,10 +55,11 @@ function Login() {
   return (
     <div>
       { user ? <Home /> :
-      <div>
-      <h1 style={{textAlign: "center"}}>Welcome To UVA Market Place</h1> <br></br> <hr></hr> <br></br>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly'}}>
-        <form onSubmit={loginUser} >
+      <div style={{fontFamily: 'Georgia, serif'}}>
+      <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
+      textAlign: "center", backgroundColor: '#F84C1E'}}>Welcome To UVA Market Place</h1> <br></br> <hr></hr> <br></br>
+      <div style={{ display: 'flex', justifyContent: 'center'}}>
+        <form onSubmit={loginUser} style={{marginRight: "30px"}} >
           <TextField varient='outlined'
             id="outlined-basic"
             variant="outlined"
@@ -65,14 +67,14 @@ function Login() {
             inputRef={userNameRef}
           /> <br></br><br></br>
 
-          <TextField varient='outlined'
+          <TextField style={{borderColor: "#F84C1E !important" }} varient='outlined'
             id="outlined-basic"
             variant="outlined"
             label="Password"
             inputRef={passwordRef}
           /> <br></br><br></br>
           <Button type="submit" variant='outlined'
-              sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}>Login
+              sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Login
             </Button>
         </form>
 
@@ -81,13 +83,17 @@ function Login() {
             <Button
                 onClick={setGuest}
                 variant='outlined'
-                sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}> Continue as Guest <br></br>
+                sx={{ color: '#232D4B', borderColor: '#232D4B', 
+                width: "195px", backgroundColor: '#F84C1E',
+                height: "84px", fontFamily: 'Georgia, serif'}}> Continue as Guest <br></br>
             </Button> <br></br><br></br>
 
-          <Link to='Registration' style={{textDecoration: 'none', justifyContent:'center'}}>
+          <Link to='registration' style={{textDecoration: 'none', justifyContent:'center'}}>
             <Button
                 variant='outlined'
-                sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}> Register <br></br>
+                sx={{ color: '#232D4B', borderColor: '#232D4B', 
+                width: "195px", backgroundColor: '#F84C1E',
+                height: "84px", fontFamily: 'Georgia, serif'}}> Register New Account <br></br>
             </Button>
           </Link> 
         </div>

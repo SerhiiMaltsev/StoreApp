@@ -1,8 +1,12 @@
 import React from 'react'
+import ButtonAppBar from '../Navbar/Navbar.js'
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <div>
+      <ButtonAppBar/>
+      Profile
+    </div>
   )
 }
 

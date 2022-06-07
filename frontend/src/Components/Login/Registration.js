@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
 
-function Regstration() {
+function Registration() {
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
@@ -46,7 +46,8 @@ function Regstration() {
 
   return (
     <div>
-        <h1 style={{textAlign: "center"}}>Registration</h1> <br></br> <hr></hr> <br></br>
+        <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
+      textAlign: "center", backgroundColor: '#F84C1E' }}>Registration</h1> <br></br> <hr></hr> <br></br>
         <center>
         {!hasRegistered &&
             <div style={{alignContent: 'center'}}>
@@ -82,7 +83,7 @@ function Regstration() {
                     /> <br></br><br></br>
 
                     <Button type="submit" variant='outlined'
-                        sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}>Register
+                        sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Register
                     </Button>
                 </form>
             </div>
@@ -91,10 +92,10 @@ function Regstration() {
             <center>
                 <div>
                     <p>Congratulations {userName}, Welcome to UVA MarketPlace</p>
-                    <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
+                    <Link to='/' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button
                             variant='outlined'
-                            sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}> Continue To the Home Page <br></br>
+                            sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}> Continue To the Home Page <br></br>
                         </Button>
                     </Link> <br></br><br></br>
                 </div>
@@ -105,4 +106,4 @@ function Regstration() {
   )
 }
 
-export default Regstration;
+export default Registration;
