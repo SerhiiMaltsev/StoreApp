@@ -5,30 +5,6 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 
 export default function ButtonAppBar() {
 
-  let navigate= useNavigate();
-  const { user, setUser } = useContext(UserContext);
-
-  const loginClick = () =>{
-    setUser('')
-    navigate("/login")
-  }
-  const homeClick = () =>{
-    navigate("/")
-  }
-  const profileClick = () =>{
-    navigate("/profile")
-  }
-  const shoppingCartClick = () =>{
-    navigate("/shoppingcart")
-  }
-  const registerClick = () =>{
-    navigate("/registration")
-  }
-  const logoutClick = () =>{
-    setUser('')
-    navigate("/login")
-  }
-
   return (
     <Box>
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor:'#F84C1E'}}>
