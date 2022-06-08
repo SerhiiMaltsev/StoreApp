@@ -2,7 +2,7 @@ import React from 'react'
 
 import axios from 'axios'
 import { useEffect, useState, useContext } from 'react'
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Divider } from '@mui/material'
 import { Container } from '@mui/system'
 import Product from '../Product/Product'
 import { UserContext} from '../../Contexts/userContext';
@@ -12,13 +12,14 @@ function Profile(props) {
   
   const { user, setUser } = useContext(UserContext);
   const [userProducts, setUserProducts] = useState([])
-  const BASE_URL = "http://localhost:3000/"
-
+  const BASE_URL = "http://localhost:9000/"
+//users/userProducts?seller=?{user}
    useEffect(() =>{
-     axios.get(`${BASE_URL}users/userProducts`)
-     .then((res) => {setUserProducts(res.data)
-      console.log(res)
-    });
+    // console.log(user)
+     axios.get(`${BASE_URL}users/userProducts?seller=${user}`)
+    .then((res) => res.json)
+    .then((text) => setUserProducts(text.result))
+    .catch((err) => console.log(err))
    },[])
   
   return (
@@ -27,6 +28,18 @@ function Profile(props) {
       <Typography variant='h3' style={{textAlign: "right", padding: '10', fontWeight: 'bold', letterSpacing: '3px'}}>{user}</Typography>
       <Box display='flex' flexDirection='row'>
         <Typography>Your products for sale</Typography>
+        <Divider ></Divider>
+            <Container maxWidth='false' sx={{m: 2}} style={{ padding: '0px', overflow: 'auto'}}>
+            {userProducts.map((item) => {
+                return (
+                    <Product
+                        key={item.id}
+                        
+                        product={item}
+                    />
+                );
+            })}
+            </Container>
         
       </Box>
 

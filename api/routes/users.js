@@ -29,6 +29,7 @@ router.get("/getUsers", async(req, res, next) => {
   const users=[]
   const allUsers = await getDocs(collection(db, "users"))
   allUsers.forEach((doc) => users.push({ id: doc.id, ...doc.data()} ))
+  //console.log(users)
   res.json({result: users})
 })
 
@@ -39,8 +40,8 @@ router.get("/userProducts", async (req, res, next) => {
   const q = query(collection(db, "products"), where("seller", "==", seller));
   const docs = await getDocs(q)
   docs.forEach((doc) => userProducts.push({ id: doc.id, ...doc.data()} ))
+  console.log(userProducts)
   res.json({result: userProducts})
-  console.log(res.json({result: userProducts}))
 })
 
 module.exports = router;
