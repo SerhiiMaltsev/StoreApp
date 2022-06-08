@@ -8,18 +8,17 @@ import Product from '../Product/Product'
 import { UserContext} from '../../Contexts/userContext';
 import ButtonAppBar from '../Navbar/Navbar.js'
 
-
-
 function Profile(props) {
   
   const { user, setUser } = useContext(UserContext);
-  
-  const [userProducts, setUserProducts] = useState({})
-  // useEffect(() =>{
-  //   axios.get(`users/`)
-  //   .then(res => setUserProducts(res.data));
-  //   console.log(res)
-  // })
+  const [userProducts, setUserProducts] = useState([])
+
+   useEffect(() =>{
+     axios.get(`users/userProducts?seller=${user}`)
+     .then((res) => {setUserProducts(res.data)
+      console.log(res)
+    });
+   },[])
   
   return (
     <div>

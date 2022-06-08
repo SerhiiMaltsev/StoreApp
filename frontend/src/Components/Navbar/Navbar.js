@@ -12,18 +12,8 @@ export default function ButtonAppBar() {
         <Typography variant="h6" component="div" sx={{color:'#232D4B', marginRight: "125px"}}>
           Welcome to UVA Market Place
         </Typography> <br></br>
-        {user==='Guest User' &&
-          <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
-        }
-        <Button onClick={homeClick} color="inherit" sx={{color:'#232D4B'}}>Home</Button>
-        <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
-        <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
-        <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button>
-        <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
-
-        {user!=='Guest User' &&
-          <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B'}}>Logout</Button>
-        }
+        
+        
       </Toolbar>
     </AppBar>
     </Box>
