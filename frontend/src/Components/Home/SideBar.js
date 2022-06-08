@@ -1,9 +1,12 @@
-import {Box, Grid, Paper, Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, Button, TextField} from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Box, Grid, Paper, Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, Button, TextField} from '@mui/material';
 import "./SideBar.css"
 import Item from "./Item.js"
 import {useNavigate} from 'react-router-dom'
 import { UserContext} from '../../Contexts/userContext';
 import React, { useState, useEffect, useRef, useContext } from "react";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import uuid from "react-uuid"
+import axios from "axios"
 
 const drawerWidth = "35vh";
 
@@ -11,8 +14,39 @@ export default function ClippedDrawer() {
 
   var listOfProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
   var shownProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
+
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState();
+  const [popup,setPopUp] = useState(false);
+  const [shoppingCartItems, setShoppingCartItems] = useState({});
+  const [shoppingCartTotal, setShoppingCartTotal] = useState();
+
+  if (document.cookie) {
+    console.log(document.cookie)
+  } else {
+    const userUUID = `userUUID=${uuid()}`
+    console.log(userUUID)
+    const expiration = `expires=${new Date('01/01/2100').toUTCString()}`
+    document.cookie = `${userUUID};${expiration};SameSite=Lax`;
+  }
+
+  function closewindow(e){
+      e.preventDefault();
+      setPopUp(!popup);
+      var tempDictOfItems = {};
+      var total = 0;
+      Object.entries(shoppingCartItems)
+      .map(([key, value])=>{
+        if (key != "uuid"){
+          tempDictOfItems[key] = value;
+          total += value;
+        }
+      })
+      console.log(total);
+      console.log(shoppingCartItems);
+      setShoppingCartTotal(total);
+      setShoppingCartItems(tempDictOfItems);
+  };
 
   function search(){
     shownProducts = []
@@ -27,6 +61,12 @@ export default function ClippedDrawer() {
 
   useEffect(() => {
     setProducts(shownProducts)
+
+    axios.put("http://localhost:9000/cartsguests/getitems", {
+        uuid: document.cookie,
+    })
+    .then((res) => setShoppingCartItems(res.data.result.cart))
+    .catch((err) => console.log(err))
   }, [])
 
   function reset(){
@@ -38,7 +78,7 @@ export default function ClippedDrawer() {
   useEffect(() => {
     navigate("/")
   }, [])
-  
+
   const loginClick = () =>{
     setUser('')
     navigate("/login")
@@ -63,6 +103,10 @@ export default function ClippedDrawer() {
     navigate("/newProduct")
   }
 
+  const openCart = () =>{
+    console.log("Open cart")
+  }
+
   return (
     <Box sx={{ display: 'flex', color:"#F84C1E", fontFamily: 'Georgia, serif'  }}>
       <CssBaseline />
@@ -78,16 +122,33 @@ export default function ClippedDrawer() {
           <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
           <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
           {user==='Guest User' &&
-          <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button> 
+          <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button>
           }
           {user!=='Guest User' &&
-          <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button> 
+          <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button>
           }
           <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
+          <ShoppingCartIcon sx={{ color: "black"}} onClick={closewindow}/>
           {user!=='Guest User' &&
             <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
           }
-          
+
+          <Dialog open={popup} fullWidth={30}>
+            <DialogTitle>Shopping Cart</DialogTitle>
+            <DialogContent>
+              <ul>
+                {Object.entries(shoppingCartItems).map(([key, value]) => (
+                  <li><p>{key} - ${value}</p></li>
+                ))}
+              </ul>
+              <p> Total: ${shoppingCartTotal}</p>
+            </DialogContent>
+            <DialogActions>
+              <Button color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Checkout</Button>
+              <Button onClick={closewindow} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Close</Button>
+            </DialogActions>
+          </Dialog>
+
         </Toolbar>
       </AppBar>
 
