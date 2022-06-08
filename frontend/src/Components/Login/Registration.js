@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Typography from '@mui/material/Typography';
+import {Box} from '@mui/material'
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
@@ -45,52 +46,65 @@ function Regstration() {
   }
 
   return (
-    <div>
-        <h1 style={{textAlign: "center"}}>Registration</h1> <br></br> <hr></hr> <br></br>
+    <div style={{
+        backgroundColor: '#EBB075',
+      }}>
+        <br></br>
         <center>
         {!hasRegistered &&
-            <div style={{alignContent: 'center'}}>
-                <form onSubmit={addUser} style={{alignContent: 'center'}}>
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Username"
-                        inputRef={userNameRef}
-                    /> <br></br><br></br>
+                <Box sx = {{
+                    width: 400, 
+                    height: 450, 
+                    borderRadius: 3, 
+                    padding: 6,
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    backgroundColor: 'white',}}>
+                <h1 style={{textAlign: "center"}}>New User Registration</h1> 
+                <div style={{alignContent: 'center'}}>
+                    <form onSubmit={addUser} style={{alignContent: 'center'}}>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Username"
+                            inputRef={userNameRef}
+                        /> <br></br><br></br>
 
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Email"
-                        inputRef={emailRef}
-                    /> <br></br><br></br>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Email"
+                            inputRef={emailRef}
+                        /> <br></br><br></br>
 
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Password"
-                        inputRef={passwordRef}
-                        type="password"
-                    /> <br></br><br></br>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Password"
+                            inputRef={passwordRef}
+                            type="password"
+                        /> <br></br><br></br>
 
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Confirm Password"
-                        inputRef={confirmPasswordRef}
-                        type="password"
-                    /> <br></br><br></br>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Confirm Password"
+                            inputRef={confirmPasswordRef}
+                            type="password"
+                        /> <br></br><br></br>
 
-                    <Button type="submit" variant='outlined'
-                        sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}>Register
-                    </Button>
-                </form>
-            </div>
+                        <Button type="submit" variant='filled'
+                            sx={{ backgroundColor: '#EBB075', color: '#000000', borderColor: '#000000', width: "195px" }}>Register
+                        </Button>
+                    </form>
+                </div>
+                </Box>
         }
         {hasRegistered &&
             <center>
                 <div>
-                    <p>Congratulations {userName}, Welcome to UVA MarketPlace</p>
+                    <p>Congratulations {userName}, Welcome to UVA MarketPlace!</p>
                     <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button
                             variant='outlined'

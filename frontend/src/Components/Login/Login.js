@@ -6,6 +6,10 @@ import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import { UserContext} from '../../Contexts/userContext';
 import Home from "../Home/Home.js"
+import {Box} from '@mui/material'
+import Description from './Description.js'
+import { animateScroll as scroll } from "react-scroll";
+import ArrowCircleDownTwoToneIcon from '@mui/icons-material/ArrowCircleDownTwoTone';
 
 function Login() {
   const userNameRef = useRef(null);
@@ -51,53 +55,86 @@ function Login() {
     setloggedIn(true)
   }
 
+  const scrollToBottom = () => {
+    scroll.scrollToBottom();
+  };
+
   return (
-    <div>
-      { user ? <Home /> :
-      <div>
-      <h1 style={{textAlign: "center"}}>Welcome To UVA Market Place</h1> <br></br> <hr></hr> <br></br>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly'}}>
-        <form onSubmit={loginUser} >
-          <TextField varient='outlined'
-            id="outlined-basic"
-            variant="outlined"
-            label="User Name"
-            inputRef={userNameRef}
-          /> <br></br><br></br>
+    <>
+      <div style={{ backgroundImage: "url(/cropped_edit_uva.png)", display: 'flex', flexDirection: 'row', alignContent: 'center' }}>
+        { user ? <Home /> :
+        <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: '100vh' }}
+        >
+        <Typography variant="h2" style={{textAlign: "center", fontWeight: 'bold'}}>UVA MARKETPLACE</Typography> 
+        <Typography variant="h5" style={{textAlign: "center", fontWeight: 'bold'}}>Built for Students, By Students</Typography> <br></br>
+        <div style={{ display: 'flex', justifyContent: 'space-evenly'}}>
+          <Box m={10} p={2} sx={{
+            width: 300,
+            height: 300,
+            borderRadius: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#FFFFFF',
+            }}>
+            <h3>Existing Users</h3> <br></br>
+            <form onSubmit={loginUser} >
+              <TextField variant='filled'
+                id="filled-basic"
+                label="Username"
+                inputRef={userNameRef}
+              /> <br></br><br></br>
+              <TextField variant='filled'
+                id="filled-basic"
+                label="Password"
+                inputRef={passwordRef}
+              /> <br></br><br></br>
+              <Button type="submit" variant='outlined' 
+                  sx={{ backgroundColor: '#EBB075', color: '#111111', borderColor: '#000000', width: "155px"}}>Login
+                </Button>
+            </form>
+            </Box>
+          <Box m={10} p={2} sx={{
+            width: 300,
+            height: 300,
+            justifyContent: 'top',
+            borderRadius: 5,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#FFFFFF',
+            }}>
+              <h3>New Users</h3> <br></br>
+              <Button
+                  onClick={setGuest}
+                  variant='outlined'
+                  sx={{ backgroundColor: '#EBB075', color: '#111111', borderColor: '#000000', width: "195px" }}> Continue as Guest <br></br>
+              </Button> <br></br><br></br>
 
-          <TextField varient='outlined'
-            id="outlined-basic"
-            variant="outlined"
-            label="Password"
-            inputRef={passwordRef}
-          /> <br></br><br></br>
-          <Button type="submit" variant='outlined'
-              sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}>Login
-            </Button>
-        </form>
-
+            <Link to='Registration' style={{textDecoration: 'none', justifyContent:'center'}}>
+              <Button
+                  variant='outlined'
+                  sx={{ backgroundColor: '#EBB075', color: '#111111', borderColor: '#000000', width: "195px" }}> Register <br></br>
+              </Button>
+            </Link> 
+          </Box>
+        </div>
+        <Button variant = "contained" onClick = {scrollToBottom} startIcon={<ArrowCircleDownTwoToneIcon />} 
+            sx={{ backgroundColor: '#EBB075', color: '#111111', borderColor: '#000000', width: "155px"}}>
+        Learn More</Button>
         <div>
-          
-            <Button
-                onClick={setGuest}
-                variant='outlined'
-                sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}> Continue as Guest <br></br>
-            </Button> <br></br><br></br>
-
-          <Link to='Registration' style={{textDecoration: 'none', justifyContent:'center'}}>
-            <Button
-                variant='outlined'
-                sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}> Register <br></br>
-            </Button>
-          </Link> 
         </div>
-        </div>
-        <center>
-          <h3> Write Up About Site...</h3>
-        </center>
-        </div>
-    }
-    </div>
+      </Grid>
+      }
+      </div>
+      <Description/>
+    </>
   )
 }
 
