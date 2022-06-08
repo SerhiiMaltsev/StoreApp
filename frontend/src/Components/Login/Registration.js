@@ -5,7 +5,8 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import axios from "axios"
-import { UserContext} from '../../Contexts/userContext';
+import { UserContext } from '../../Contexts/userContext';
+import { UuidContext } from '../../Contexts/uuidContext';
 
 function Registration() {
   const userNameRef = useRef(null);
@@ -16,6 +17,17 @@ function Registration() {
   const [hasRegistered, setHasRegistered] = useState(false)
 
   const { user, setUser } = useContext(UserContext);
+  const { uuid, setUuid } = useContext(UuidContext);
+
+  if (document.cookie) {
+    console.log(document.cookie)
+  } else {
+    const userUUID = `userUUID=${uuid()}`
+    console.log(userUUID)
+    const expiration = `expires=${new Date('01/01/2100').toUTCString()}`
+    document.cookie = `${userUUID};${expiration};SameSite=Lax`;
+    console.log(document.cookie)
+  }
 
   const addUser = (e) => {
     e.preventDefault();
@@ -29,7 +41,7 @@ function Registration() {
         name: userNameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value,
-        uniqueID: "FIGURE OUT"
+        uniqueID: uuid
     })
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err))
@@ -46,6 +58,7 @@ function Registration() {
 
   return (
     <div>
+      {console.log(document.cookie)}
         <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
       textAlign: "center", backgroundColor: '#F84C1E' }}>Registration</h1> <br></br> <hr></hr> <br></br>
         <center>

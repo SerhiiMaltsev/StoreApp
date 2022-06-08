@@ -4,6 +4,7 @@ import { ShoppingCartIcon } from '@mui/icons-material';
 import uuid from "react-uuid"
 import ButtonAppBar from "../Navbar/Navbar.js"
 import ClippedDrawer from "./SideBar.js"
+import axios from 'axios'
 
 function Home() {
 
