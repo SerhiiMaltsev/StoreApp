@@ -1,11 +1,9 @@
 import React from "react";
-import CheckoutForm from "./CheckoutForm";
-import "./ShoppingCart.css";
 
 function ShoppingCart() {
   return (
     <div className="App">
-      <CheckoutForm/>
+      <h1>hi</h1>
     </div>
   );
 }

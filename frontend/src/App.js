@@ -1,10 +1,12 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { UserContext } from "./Contexts/userContext";
+import { useState, useContext } from 'react';
 import Login from "./Components/Login/Login.js"
 import Home from "./Components/Home/Home.js"
-import Profile from "./Components/Profile/Profile.js"
-import ShoppingCart from "./Components/ShoppingCart/ShoppingCart.js"
 
 function App() {
+  const { user } = useContext(UserContext);
+  const [username, setUsername] = useState('');
+
   return (
     <div className="App">
       <BrowserRouter >
