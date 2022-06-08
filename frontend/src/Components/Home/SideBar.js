@@ -69,7 +69,7 @@ export default function ClippedDrawer() {
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor:'#F84C1E'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{color:'#232D4B', marginRight: "125px"}}>
-            Welcome to UVA Market Place
+            UVA Market Place
           </Typography> <br></br>
           {user==='Guest User' &&
             <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
@@ -87,7 +87,7 @@ export default function ClippedDrawer() {
           {user!=='Guest User' &&
             <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
           }
-          }
+          
         </Toolbar>
       </AppBar>
 
