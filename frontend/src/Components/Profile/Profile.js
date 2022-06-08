@@ -12,9 +12,10 @@ function Profile(props) {
   
   const { user, setUser } = useContext(UserContext);
   const [userProducts, setUserProducts] = useState([])
+  const BASE_URL = "http://localhost:3000/"
 
    useEffect(() =>{
-     axios.get(`users/userProducts?seller=${user}`)
+     axios.get(`${BASE_URL}users/userProducts`)
      .then((res) => {setUserProducts(res.data)
       console.log(res)
     });

@@ -29,12 +29,10 @@ router.get("/getUsers", async(req, res, next) => {
   const users=[]
   const allUsers = await getDocs(collection(db, "users"))
   allUsers.forEach((doc) => users.push({ id: doc.id, ...doc.data()} ))
-
-  //console.log(users)
   res.json({result: users})
 })
 
-router.get("/userProducts", async (req, res) => {
+router.get("/userProducts", async (req, res, next) => {
   const userProducts=[]
   const seller = req.query.seller
   console.log("Seller: " + seller)
