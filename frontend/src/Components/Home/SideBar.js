@@ -8,8 +8,31 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 const drawerWidth = "35vh";
 
 export default function ClippedDrawer() {
+
+  var listOfProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
+  var shownProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
+  const [products, setProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState();
+
+  function search(){
+    shownProducts = []
+    for (let i = 0; i < listOfProducts.length; i++) {
+      if (listOfProducts[i].name.includes(searchInput)){
+        shownProducts.push(listOfProducts[i])
+      }
+    }
+    setProducts(shownProducts)
+    console.log(products)
+  }
+
+  useEffect(() => {
+    setProducts(shownProducts)
+  }, [])
+
+  function reset(){
+    setProducts(listOfProducts)
+  }
   let navigate= useNavigate();
-  const listOfProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -46,7 +69,7 @@ export default function ClippedDrawer() {
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor:'#F84C1E'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{color:'#232D4B', marginRight: "125px"}}>
-            Welcome to UVA Market Place          
+            Welcome to UVA Market Place
           </Typography> <br></br>
           {user==='Guest User' &&
             <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
@@ -64,6 +87,7 @@ export default function ClippedDrawer() {
           {user!=='Guest User' &&
             <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
           }
+          }
         </Toolbar>
       </AppBar>
 
@@ -79,9 +103,10 @@ export default function ClippedDrawer() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <div className="SearchElems">
-            <TextField id="Search-bar" label="Search" variant="outlined" sx={{marginTop: "30px"}}/>
+            <TextField id="Search-bar" label="Search" variant="outlined" onChange={(e) => {setSearchInput(e.target.value)}} sx={{marginTop: "30px"}}/>
             <div className="SearchButton">
-              <Button variant="contained"  sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Search</Button>
+              <Button variant="contained" onClick={search} sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Search</Button>
+              <Button variant="contained" onClick={reset} sx={{ marginTop: "2vh", color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Reset</Button>
               {user!=="Guest User" &&
               <h1>Logged In As: {user}</h1>
             }
@@ -94,11 +119,11 @@ export default function ClippedDrawer() {
       </Drawer>
 
       <Box component="main" >
-        <Toolbar sx={{marginTop: "30px"}} />
-        <Grid className="Products" container spacing={10} sx={{marginLeft: "1px"}}>
-          {Object.keys(listOfProducts).map((keyName, i) => (
+        <Toolbar />
+        <Grid className="Products" container spacing={10}>
+          {Object.keys(products).map((keyName, i) => (
             <Grid className="Product" item xs={2.5}>
-              <Item product={listOfProducts[i]}/>
+              <Item product={products[i]}/>
             </Grid>
           ))}
         </Grid>

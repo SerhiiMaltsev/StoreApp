@@ -12,6 +12,16 @@ router.get("/allProducts", async (req, res, next) => {
     res.json({result: allProducts})
 })
 
+
+router.get("/userProducts", async (req, res) => {
+    const userProducts=[]
+    const seller = req.body
+    const q = query(collection(db, "products"), where("seller", "==", seller));
+    const docs = await getDocs(q)
+    docs.forEach((doc) => allProducts.push({ id: doc.id, ...doc.data()} ))
+    res.json({result: userProducts})
+})
+
 router.put("/addProduct", async (req, res, next) => {
     const newProduct = {
         seller: req.body.user,

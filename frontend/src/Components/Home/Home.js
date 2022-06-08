@@ -4,8 +4,9 @@ import { ShoppingCartIcon } from '@mui/icons-material';
 import uuid from "react-uuid"
 import ButtonAppBar from "../Navbar/Navbar.js"
 import ClippedDrawer from "./SideBar.js"
+import axios from 'axios'
 
-function Profile() {
+function Home() {
 
   var product = {name: "product", price: "$100.00"}
   var shoppingCart = []
@@ -27,4 +28,4 @@ function Profile() {
   )
 }
 
-export default Profile
+export default Home
