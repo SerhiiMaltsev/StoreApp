@@ -28,7 +28,6 @@ router.get("/getUsers", async(req, res, next) => {
   const users=[]
   const allUsers = await getDocs(collection(db, "users"))
   allUsers.forEach((doc) => users.push({ id: doc.id, ...doc.data()} ))
-
   res.json({result: users})
 })
 
