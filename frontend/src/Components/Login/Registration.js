@@ -46,7 +46,7 @@ function Registration() {
 
   return (
     <div>
-        <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
+    <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
       textAlign: "center", backgroundColor: '#F84C1E' }}>Registration</h1> <br></br> <hr></hr> <br></br>
         <center>
         {!hasRegistered &&

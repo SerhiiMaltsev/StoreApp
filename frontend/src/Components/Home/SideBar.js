@@ -35,6 +35,10 @@ export default function ClippedDrawer() {
   let navigate= useNavigate();
   const { user, setUser } = useContext(UserContext);
 
+  useEffect(() => {
+    navigate("/")
+  }, [])
+  
   const loginClick = () =>{
     setUser('')
     navigate("/login")
@@ -55,6 +59,9 @@ export default function ClippedDrawer() {
     setUser('')
     navigate("/login")
   }
+  const listProductClick = () =>{
+    navigate("/newProduct")
+  }
 
   return (
     <Box sx={{ display: 'flex', color:"#F84C1E", fontFamily: 'Georgia, serif'  }}>
@@ -70,10 +77,16 @@ export default function ClippedDrawer() {
           <Button onClick={homeClick} color="inherit" sx={{color:'#232D4B'}}>Home</Button>
           <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
           <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
-          <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button>
+          {user==='Guest User' &&
+          <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button> 
+          }
+          {user!=='Guest User' &&
+          <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button> 
+          }
           <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
           {user!=='Guest User' &&
-            <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B'}}>Logout</Button>
+            <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
+          }
           }
         </Toolbar>
       </AppBar>

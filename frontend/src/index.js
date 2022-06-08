@@ -12,6 +12,7 @@ import UserProvider from './Contexts/userContext';
 import { render } from "react-dom";
 import { UserContext} from './Contexts/userContext';
 import Registration from "./Components/Login/Registration.js"
+import NewProduct from "./Components/Home/newProduct.js"
 
 const rootElement = document.getElementById('root');
 render(
@@ -19,6 +20,7 @@ render(
     <BrowserRouter >
           <Routes>
             <Route path='/' element={<App/>}/>
+            <Route path='/newProduct' element={<NewProduct/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/shoppingcart' element={<ShoppingCart/>}/>
