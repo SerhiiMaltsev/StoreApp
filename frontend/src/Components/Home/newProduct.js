@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import Autocomplete from '@mui/material/Autocomplete';
 import {useNavigate} from 'react-router-dom'
+import ButtonAppBar from '../Navbar/Navbar.js'
 
 function NewProduct() {
     let navigate= useNavigate();
@@ -35,11 +36,11 @@ function NewProduct() {
         detailRef.current.value = ""
         priceRef.current.value = ""
       }
-
 return(
     <div>
+    <ButtonAppBar sx={{marginBottom: "20px"}}/> <br></br><br></br>
     <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
-      textAlign: "center", backgroundColor: '#F84C1E' }}>Add Product</h1> <br></br> <hr></hr> <br></br>
+      textAlign: "center", backgroundColor: '#F84C1E', marginTop: "20px", padding: "10px" }}>Add Product</h1> <br></br> <hr></hr> <br></br>
         <center>
     <form onSubmit={addProduct} style={{alignContent: 'center'}}>
         <TextField varient='outlined'
@@ -58,7 +59,7 @@ return(
                 width: '200px',
             }}
             {...params}
-            label="Categories"
+            label="Category"
             inputRef={catRef}
             />}
         /> <br></br>
@@ -67,7 +68,7 @@ return(
             id="outlined-basic"
             variant="outlined"
             label="Price"
-            helperText="Enter Dollar and Cent Amount (ex. 1.25)"
+            helperText="Enter Dollar and Cent Amount (ex. 15.25)"
             inputRef={priceRef}
             sx={{
                 width: "200px",

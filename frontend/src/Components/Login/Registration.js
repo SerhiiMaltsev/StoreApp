@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
+import ButtonAppBar from '../Navbar/Navbar.js'
 
 function Registration() {
   const userNameRef = useRef(null);
@@ -16,7 +17,6 @@ function Registration() {
   const [hasRegistered, setHasRegistered] = useState(false)
 
   const { user, setUser } = useContext(UserContext);
-
   const addUser = (e) => {
     e.preventDefault();
     if(passwordRef.current.value!==confirmPasswordRef.current.value) {
@@ -46,8 +46,13 @@ function Registration() {
 
   return (
     <div>
+    {user==="Guest User" | user===null ?
+    <ButtonAppBar sx={{marginBottom: "20px"}}/> : 
     <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
-      textAlign: "center", backgroundColor: '#F84C1E' }}>Registration</h1> <br></br> <hr></hr> <br></br>
+      textAlign: "center", backgroundColor: '#F84C1E'}}>UVA MarketPlace</h1>
+    } <br></br><br></br>
+    <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
+      textAlign: "center", backgroundColor: '#F84C1E', padding: "10px"}}>Registration</h1> <br></br> <hr></hr> <br></br>
         <center>
         {!hasRegistered &&
             <div style={{alignContent: 'center'}}>
