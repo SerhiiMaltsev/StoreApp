@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
 import { UuidContext } from '../../Contexts/uuidContext';
+import { Helmet } from 'react-helmet';
 
 function Registration() {
   const userNameRef = useRef(null);
@@ -57,6 +58,15 @@ function Registration() {
   }
 
   return (
+    <div>
+    <Helmet><title>Register</title></Helmet>
+    {user==="Guest User" | user===null ?
+    <ButtonAppBar sx={{marginBottom: "20px"}}/> : 
+    <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
+      textAlign: "center", backgroundColor: '#F84C1E'}}>UVA MarketPlace</h1>
+    } <br></br><br></br>
+    <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
+      textAlign: "center", backgroundColor: '#F84C1E', padding: "10px"}}>Registration</h1> <br></br> <hr></hr> <br></br>
     <div style={{
         backgroundColor: '#EBB075',
       }}>

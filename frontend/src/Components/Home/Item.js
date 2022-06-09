@@ -39,13 +39,14 @@ function Item(props) {
 
   return (
       <div className="Item">
+
         {!cart.includes(props.id) && <Paper elevation={3}>
           <h3>{props.product.productName}</h3>
           <p>price: ${props.product.price}</p>
           <p>Category: {props.product.category}</p>
           <p>Listed by: {props.product.seller}</p>
           <p>Details: {props.product.details}</p>
-          <Button onClick={addToCart} variant="contained" sx={{marginBottom: "10px", color: '#232D4B', 
+          <Button onClick={addToCart} variant="contained" xs={2.5} sx={{marginBottom: "10px", color: '#232D4B', 
           borderColor: '#232D4B', width: "150px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Add to Cart</Button>
         </Paper> }
       </div> 
