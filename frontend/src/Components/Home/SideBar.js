@@ -12,8 +12,8 @@ const drawerWidth = "35vh";
 
 export default function ClippedDrawer() {
 
-  var listOfProducts = []
-  var shownProducts = []
+  var [listOfProducts, setListOfProducts] = useState([])
+  var [shownProducts, setShownProducts] = useState([])
   const [cart, setCart] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   
@@ -65,9 +65,7 @@ export default function ClippedDrawer() {
   }
 
   useEffect(() => {
-
     setProducts(shownProducts)
-
     axios.put("http://localhost:9000/cartsguests/getitems", {
         uuid: document.cookie,
     })
@@ -79,34 +77,36 @@ export default function ClippedDrawer() {
       .then((text) => setAllUsers(text.result))
       .catch((err) => console.log(err))
 
-      console.log(allUsers)
-      for(let i=0; i<allUsers.length; i++) {
-        console.log(allUsers[i].name)
-        if(allUsers[i].name===user) {
-          setCart(allUsers[i].cart)
-          break;
-        }
-      }
-
     fetch("http://localhost:9000/products/allProducts")
       .then((res) => res.json())
       .then((text) => setProducts(text.result))
       .catch((err) => console.log(err))
 
-      listOfProducts=products
-      shownProducts=products
+      //listOfProducts=products
+      //shownProducts=products
 
-      console.log(cart)
-      const finalProducts=[]
-      for(let i=0; i<products.length; i++) {
-        console.log(products[i].id)
-        if(!cart.contains(products[i].id)) {
-          finalProducts.push(products[i])
-        }
-      }
-      listOfProducts=finalProducts
-      shownProducts=finalProducts
   }, [])
+
+  useEffect(() => {
+    for(let i=0; i<allUsers.length; i++) {
+      console.log(allUsers[i].name)
+      if(allUsers[i].name===user) {
+        setCart(allUsers[i].cart)
+        break;
+      }
+    }
+   
+    const includeProducts=[]
+    for(let i=0; i<products.length; i++) {
+      if(!cart.includes(products[i].id)) {
+        includeProducts.push(products[i])
+      }
+    }
+    setListOfProducts(includeProducts)
+    setShownProducts(includeProducts)
+
+  }, [allUsers, products])
+
 
   function reset(){
     setProducts(listOfProducts)
@@ -219,9 +219,9 @@ export default function ClippedDrawer() {
       <Box component="main" >
         <Toolbar />
         <Grid className="Products" container spacing={10}>
-          {Object.keys(products).map((keyName, i) => (
+          {Object.keys(listOfProducts).map((keyName, i) => (
             <Grid className="Product" item xs={2.5}>
-              <Item product={products[i]} cart={cart}/>
+              <Item product={listOfProducts[i]}/>
             </Grid>
           ))}
         </Grid>

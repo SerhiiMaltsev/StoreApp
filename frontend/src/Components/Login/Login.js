@@ -62,7 +62,6 @@ function Login() {
 
   return (
     <>
-      <Navbar/>s
       <div style={{ backgroundImage: "url(/cropped_edit_uva.png)", display: 'flex', flexDirection: 'row', alignContent: 'center' }}>
         { user ? <Home /> :
         <Grid
@@ -129,13 +128,13 @@ function Login() {
         </div>
         <Button variant = "contained" onClick = {scrollToBottom} startIcon={<ArrowCircleDownTwoToneIcon />} 
             sx={{ backgroundColor: '#EBB075', color: '#111111', borderColor: '#000000', width: "155px"}}>
-        Learn More</Button>
+        Learn More</Button> <br></br> <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <div>
         </div>
+        <Description/>
       </Grid>
       }
       </div>
-      <Description/>
     </>
   )
 }
