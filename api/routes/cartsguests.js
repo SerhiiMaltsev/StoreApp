@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require("./firebase")
 
-const {getDocs, getDoc, collection, addDoc, deleteDoc, doc, updateDoc, query, where, Timestamp, increment} = require("firebase/firestore")
+const {getDocs, getDoc, collection, addDoc, deleteDoc, doc, updateDoc, query, where, Timestamp, increment, setDoc, deleteField } = require("firebase/firestore")
 
 router.get("/getcarts", async(req, res, next) => {
   const carts=[]
@@ -15,12 +15,41 @@ router.put("/addcart", async (req, res, next) => {
   const newCart = {
       uuid: req.body.uuid,
   }
-  addDoc(collection(db, "shoppingCartGuests"), newCart)
+  setDoc(doc(db, "shoppingCartGuests", String(req.body.uuid)), newCart)
   .then((docRef) => {
       console.log("cart added")
     })
   .catch((e) => console.error(e))
 })
+
+router.put("/additem", async (req, res, next) => {
+  console.log(req.body.uuid)
+  console.log(req.body.name)
+  console.log(req.body.price)
+  console.log(req.body.productID)
+  const newItem = doc(db, "shoppingCartGuests", req.body.uuid);
+
+  var nameOfItem = req.body.name
+  var price = req.body.price
+
+  var updItem = {};
+  updItem[nameOfItem] = parseFloat(price);
+
+  await updateDoc(newItem, updItem);
+})
+
+router.put("/deleteitem", async (req, res, next) => {
+  const newItem = doc(db, "shoppingCartGuests", req.body.uuid);
+
+  var nameOfItem = req.body.name
+  var price = req.body.price
+
+  var updItem = {};
+  updItem[nameOfItem] = deleteField();
+
+  await updateDoc(newItem, updItem);
+})
+
 
 router.put("/getitems", async(req, res, next) => {
   const carts=[]

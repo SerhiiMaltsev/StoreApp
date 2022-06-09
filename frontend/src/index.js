@@ -13,6 +13,7 @@ import { render } from "react-dom";
 import { UserContext} from './Contexts/userContext';
 import Registration from "./Components/Login/Registration.js"
 import NewProduct from "./Components/Home/newProduct.js"
+import ShoppingCartGuest from "./Components/ShoppingCartGuest/ShoppingCartGuest.js"
 
 const rootElement = document.getElementById('root');
 render(
@@ -26,6 +27,7 @@ render(
             <Route path='/shoppingcart' element={<ShoppingCart/>}/>
             <Route path='login/registration' element={<Registration/>}/>
             <Route path='/registration' element={<Registration/>}/>
+            <Route path='/shoppingcartguest' element={<ShoppingCartGuest/>}/>
           </Routes>
       </BrowserRouter>
     </UserProvider>,

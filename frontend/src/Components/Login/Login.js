@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import { UserContext} from '../../Contexts/userContext';
 import Home from "../Home/Home.js"
+import Helmet from "react-helmet"
 import {Box} from '@mui/material'
 import Description from './Description.js'
 import { animateScroll as scroll } from "react-scroll";
@@ -34,7 +35,7 @@ function Login() {
     for(let i=0; i<allUsers.length; i++) {
       if(allUsers[i].name===userNameRef.current.value && allUsers[i].password===passwordRef.current.value) {
         userFound=true;
-        console.log("found")
+        //console.log("found")
         break;
       }
     }
@@ -62,7 +63,7 @@ function Login() {
 
   return (
     <>
-      <Navbar/>s
+      <Helmet><title>Log In</title></Helmet>
       <div style={{ backgroundImage: "url(/cropped_edit_uva.png)", display: 'flex', flexDirection: 'row', alignContent: 'center' }}>
         { user ? <Home /> :
         <Grid
@@ -129,13 +130,13 @@ function Login() {
         </div>
         <Button variant = "contained" onClick = {scrollToBottom} startIcon={<ArrowCircleDownTwoToneIcon />} 
             sx={{ backgroundColor: '#EBB075', color: '#111111', borderColor: '#000000', width: "155px"}}>
-        Learn More</Button>
+        Learn More</Button> <br></br> <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <div>
         </div>
+        <Description/>
       </Grid>
       }
       </div>
-      <Description/>
     </>
   )
 }
