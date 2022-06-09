@@ -42,7 +42,7 @@ function Registration() {
         name: userNameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value,
-        uniqueID: uuid
+        uniqueID: "Holder"
     })
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err))
@@ -61,7 +61,6 @@ function Registration() {
     <div style={{
         backgroundColor: '#EBB075',
       }}>
-        <Navbar/>
         <br></br>
         <center>
         {!hasRegistered &&
@@ -73,7 +72,8 @@ function Registration() {
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center', 
-                    backgroundColor: 'white',}}>
+                    backgroundColor: 'white',
+                    marginBottom: ""}}>
                 <h1 style={{textAlign: "center"}}>New User Registration</h1> 
                 <div style={{alignContent: 'center'}}>
                     <form onSubmit={addUser} style={{alignContent: 'center'}}>
@@ -119,18 +119,18 @@ function Registration() {
                     alignItems="center"
                     justifyContent="center">
                         <Typography>Already have an account?</Typography>
-                        <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
+                        <Link to='/login' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button sx = {{color: "#EBB075"}}>Sign In</Button>
                         </Link>
                     </Grid>
-                </div>
+                </div> <br></br><br></br>
                 </Box>
         }
         {hasRegistered &&
             <center>
                 <div>
                     <p>Congratulations {userName}, Welcome to UVA MarketPlace!</p>
-                    <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
+                    <Link to='/' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button
                             variant='outlined'
                             sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}> Continue To the Home Page <br></br>

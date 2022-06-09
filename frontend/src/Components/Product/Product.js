@@ -12,11 +12,11 @@ function Product(props) {
                 height='240'
                 width='200'
                 image={placeholderImage}
-                alt='Artist Picture Not Found'>
+                alt='Picture Not Found'>
           <Typography variant ='h6'>
-                Name: {props.productName}
-                Cost: {props.price}
-                Seller: {props.seller}
+                Name: {props.product.productName}
+                Cost: {props.product.price}
+                Seller: {props.product.seller}
             </Typography>     
           </CardMedia>
         </CardContent>
