@@ -9,7 +9,7 @@ export default function ButtonAppBar() {
   let navigate= useNavigate();
   const { user, setUser } = useContext(UserContext);
 
-  
+
   const loginClick = () =>{
     setUser('')
     navigate("/login")
@@ -33,6 +33,11 @@ export default function ButtonAppBar() {
   const listProductClick = () =>{
     navigate("/newProduct")
   }
+
+  const shoppingCartGuestClick = () =>{
+    navigate("/shoppingcartguest")
+  }
+
   return (
     <Box>
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor:'#F84C1E'}}>
@@ -44,17 +49,21 @@ export default function ButtonAppBar() {
           <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
         }
         <Button onClick={homeClick} color="inherit" sx={{color:'#232D4B'}}>Home</Button>
-        <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
+        {user!=='Guest User' &&
         <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
+        }
         {user==='Guest User' &&
-        <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button> 
+        <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button>
+        }
+        {user==='Guest User' &&
+        <Button onClick={shoppingCartGuestClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
         }
         {user!=='Guest User' &&
-        <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button> 
+        <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button>
         }
         <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
         {user!=='Guest User' &&
-          <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
+        <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
         }
       </Toolbar>
     </AppBar>
