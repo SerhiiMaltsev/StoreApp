@@ -14,8 +14,8 @@ router.put("/addUser", async (req, res, next) => {
       name: req.body.name,
       password: req.body.password,
       uuid: req.body.uniqueID,
-      email: req.body.email,
-      cart: []
+      email: req.body.email
+
   }
   addDoc(collection(db, "users"), newUser)
   .then((docRef) => {
@@ -24,14 +24,13 @@ router.put("/addUser", async (req, res, next) => {
   .catch((e) => console.error(e))
 })
 
+
 router.get("/getUsers", async(req, res, next) => {
   const users=[]
   const allUsers = await getDocs(collection(db, "users"))
   allUsers.forEach((doc) => users.push({ id: doc.id, ...doc.data()} ))
-  //console.log(users)
   res.json({result: users})
 })
-
 
 router.get("/userProducts", async (req, res, next) => {
   const userProducts=[]
