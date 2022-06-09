@@ -28,13 +28,18 @@ function Profile(props) {
     <div>
       <Helmet><title>Profile Page</title></Helmet>
 
+      <br></br> <br></br>
+     
       <Typography variant='h3' style={{textAlign: "right", padding: '10', fontWeight: 'bold', letterSpacing: '3px'}}>{user}</Typography>
       <Box display='flex' flexDirection='row'>
         <Typography style={{fonteight: "bold"}}>Your products</Typography>
         <Divider ></Divider>
             <Container maxWidth='false' sx={{m: 2}} style={{ padding: '0px', overflow: 'auto'}}>
             <Grid className="Products" container spacing={10}>
-              {userProducts.map}
+              {userProducts.map((product) => {
+                {console.log(product)}
+                return(<Item key={product.id} product={product}/>)
+              })}
             </Grid>
             </Container>
         

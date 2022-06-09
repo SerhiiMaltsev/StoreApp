@@ -144,8 +144,7 @@ function Registration() {
         }
         </center>
     </div>
-   </div>
-  )
+   )
 }
 
 export default Registration;
