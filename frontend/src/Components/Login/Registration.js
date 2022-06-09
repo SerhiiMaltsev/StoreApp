@@ -7,8 +7,10 @@ import {Box} from '@mui/material'
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
+import Navbar from '../Navbar/Navbar.js'
+import { UuidContext } from '../../Contexts/uuidContext';
 
-function Regstration() {
+function Registration() {
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
@@ -17,7 +19,17 @@ function Regstration() {
   const [hasRegistered, setHasRegistered] = useState(false)
 
   const { user, setUser } = useContext(UserContext);
+  const { uuid, setUuid } = useContext(UuidContext);
 
+  if (document.cookie) {
+    console.log(document.cookie)
+  } else {
+    const userUUID = `userUUID=${uuid()}`
+    console.log(userUUID)
+    const expiration = `expires=${new Date('01/01/2100').toUTCString()}`
+    document.cookie = `${userUUID};${expiration};SameSite=Lax`;
+    console.log(document.cookie)
+  }
   const addUser = (e) => {
     e.preventDefault();
     if(passwordRef.current.value!==confirmPasswordRef.current.value) {
@@ -30,7 +42,7 @@ function Regstration() {
         name: userNameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value,
-        uniqueID: "FIGURE OUT"
+        uniqueID: uuid
     })
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err))
@@ -49,12 +61,13 @@ function Regstration() {
     <div style={{
         backgroundColor: '#EBB075',
       }}>
+        <Navbar/>
         <br></br>
         <center>
         {!hasRegistered &&
                 <Box sx = {{
                     width: 400, 
-                    height: 450, 
+                    height: 470, 
                     borderRadius: 3, 
                     padding: 6,
                     display: 'flex', 
@@ -98,6 +111,18 @@ function Regstration() {
                             sx={{ backgroundColor: '#EBB075', color: '#000000', borderColor: '#000000', width: "195px" }}>Register
                         </Button>
                     </form>
+                    <br></br>
+                    <Grid 
+                    container
+                    spacing={0}
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center">
+                        <Typography>Already have an account?</Typography>
+                        <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
+                        <Button sx = {{color: "#EBB075"}}>Sign In</Button>
+                        </Link>
+                    </Grid>
                 </div>
                 </Box>
         }
@@ -108,7 +133,7 @@ function Regstration() {
                     <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button
                             variant='outlined'
-                            sx={{ color: '#000000', borderColor: '#000000', width: "195px" }}> Continue To the Home Page <br></br>
+                            sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}> Continue To the Home Page <br></br>
                         </Button>
                     </Link> <br></br><br></br>
                 </div>
@@ -119,4 +144,4 @@ function Regstration() {
   )
 }
 
-export default Regstration;
+export default Registration;

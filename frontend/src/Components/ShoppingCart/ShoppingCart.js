@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
+import ButtonAppBar from '../Navbar/Navbar.js'
 
 function ShoppingCart() {
   return (
-    <div className="App">
-      <h1>hi</h1>
+    <div>
+      <ButtonAppBar/>
     </div>
-  );
+  )
 }
 
-
-export default ShoppingCart;
+export default ShoppingCart

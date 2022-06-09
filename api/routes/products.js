@@ -13,11 +13,22 @@ router.get("/allProducts", async (req, res, next) => {
 })
 
 
-router.post("/addProduct", async (req, res, next) => {
+router.get("/userProducts", async (req, res) => {
+    const userProducts=[]
+    const seller = req.body
+    const q = query(collection(db, "products"), where("seller", "==", seller));
+    const docs = await getDocs(q)
+    docs.forEach((doc) => allProducts.push({ id: doc.id, ...doc.data()} ))
+    res.json({result: userProducts})
+})
+
+router.put("/addProduct", async (req, res, next) => {
     const newProduct = {
-        name: req.body.name,
+        seller: req.body.user,
+        productName: req.body.name,
+        category: req.body.category,
         price: req.body.price,
-        seller: req.body.seller
+        details: req.body.details,
     }
     addDoc(collection(db, "products"), newProduct)
     .then((docRef) => {
@@ -25,7 +36,5 @@ router.post("/addProduct", async (req, res, next) => {
       })
     .catch((e) => console.error(e))
 })
-
-
 
 module.exports = router
