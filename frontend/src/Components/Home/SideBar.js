@@ -12,8 +12,13 @@ const drawerWidth = "35vh";
 
 export default function ClippedDrawer() {
 
-  var listOfProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
-  var shownProducts = [{name: "product1"}, {name: "product2"}, {name: "product3"}, {name: "product4"}, {name: "product5"}, {name: "product6"}, {name: "product7"}, {name: "product8"}, {name: "product9"}, {name: "product10"}, {name: "product11"}]
+  var listOfProducts = []
+  var shownProducts = []
+  const [cart, setCart] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+  
+  let navigate= useNavigate();
+  const { user, setUser } = useContext(UserContext);
 
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState();
@@ -60,6 +65,7 @@ export default function ClippedDrawer() {
   }
 
   useEffect(() => {
+
     setProducts(shownProducts)
 
     axios.put("http://localhost:9000/cartsguests/getitems", {
@@ -67,13 +73,44 @@ export default function ClippedDrawer() {
     })
     .then((res) => setShoppingCartItems(res.data.result.cart))
     .catch((err) => console.log(err))
+
+    fetch("http://localhost:9000/users/getUsers")
+      .then((res) => res.json())
+      .then((text) => setAllUsers(text.result))
+      .catch((err) => console.log(err))
+
+      console.log(allUsers)
+      for(let i=0; i<allUsers.length; i++) {
+        console.log(allUsers[i].name)
+        if(allUsers[i].name===user) {
+          setCart(allUsers[i].cart)
+          break;
+        }
+      }
+
+    fetch("http://localhost:9000/products/allProducts")
+      .then((res) => res.json())
+      .then((text) => setProducts(text.result))
+      .catch((err) => console.log(err))
+
+      listOfProducts=products
+      shownProducts=products
+
+      console.log(cart)
+      const finalProducts=[]
+      for(let i=0; i<products.length; i++) {
+        console.log(products[i].id)
+        if(!cart.contains(products[i].id)) {
+          finalProducts.push(products[i])
+        }
+      }
+      listOfProducts=finalProducts
+      shownProducts=finalProducts
   }, [])
 
   function reset(){
     setProducts(listOfProducts)
   }
-  let navigate= useNavigate();
-  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     navigate("/")
@@ -184,7 +221,7 @@ export default function ClippedDrawer() {
         <Grid className="Products" container spacing={10}>
           {Object.keys(products).map((keyName, i) => (
             <Grid className="Product" item xs={2.5}>
-              <Item product={products[i]}/>
+              <Item product={products[i]} cart={cart}/>
             </Grid>
           ))}
         </Grid>
