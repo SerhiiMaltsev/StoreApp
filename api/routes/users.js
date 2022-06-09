@@ -14,7 +14,8 @@ router.put("/addUser", async (req, res, next) => {
       name: req.body.name,
       password: req.body.password,
       uuid: req.body.uniqueID,
-      email: req.body.email
+      email: req.body.email,
+      cart: []
 
   }
   addDoc(collection(db, "users"), newUser)
@@ -63,10 +64,13 @@ router.put("/addToCart", async (req, res, next) => {
   const arr = docSnap.data().cart;
   arr.push(productID);
 
+  console.log(productID)
+
   await updateDoc(postRef, {
       cart: arr
   });
   res.send("Updated")
+
 
 })
 
