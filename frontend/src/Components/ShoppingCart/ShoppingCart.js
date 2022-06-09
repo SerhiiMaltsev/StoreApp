@@ -3,6 +3,7 @@ import ButtonAppBar from '../Navbar/Navbar.js'
 import { UserContext} from '../../Contexts/userContext';
 import React, { useState, useEffect, useRef, useContext } from "react";
 import CartItem from "./cartItem.js"
+import Helmet from 'react-helmet'
 
 function ShoppingCart() {
   const { user, setUser } = useContext(UserContext);
@@ -49,6 +50,8 @@ function ShoppingCart() {
 
   return (
     <div>
+      <Helmet><title>Shopping Cart</title></Helmet>
+
       <ButtonAppBar/>
       <Box component="main" >
         <Toolbar />
