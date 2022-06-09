@@ -16,7 +16,7 @@ export default function ClippedDrawer() {
   var [shownProducts, setShownProducts] = useState([])
   const [cart, setCart] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
-  
+
   let navigate= useNavigate();
   const { user, setUser } = useContext(UserContext);
 
@@ -140,6 +140,10 @@ export default function ClippedDrawer() {
     navigate("/newProduct")
   }
 
+  const shoppingCartGuestClick = () =>{
+    navigate("/shoppingcartguest")
+  }
+
   const openCart = () =>{
     console.log("Open cart")
   }
@@ -156,35 +160,19 @@ export default function ClippedDrawer() {
             <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
           }
           <Button onClick={homeClick} color="inherit" sx={{color:'#232D4B'}}>Home</Button>
-          <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
+          {user!=='Guest User' &&
           <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
+          }
           {user==='Guest User' &&
           <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button>
+          }
+          {user==='Guest User' &&
+          <Button onClick={shoppingCartGuestClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
           }
           {user!=='Guest User' &&
           <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button>
           }
           <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
-          <ShoppingCartIcon sx={{ color: "black"}} onClick={closewindow}/>
-          {user!=='Guest User' &&
-            <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Logout</Button>
-          }
-
-          <Dialog open={popup} fullWidth={30}>
-            <DialogTitle>Shopping Cart</DialogTitle>
-            <DialogContent>
-              <ul>
-                {Object.entries(shoppingCartItems).map(([key, value]) => (
-                  <li><p>{key} - ${value}</p></li>
-                ))}
-              </ul>
-              <p> Total: ${shoppingCartTotal}</p>
-            </DialogContent>
-            <DialogActions>
-              <Button color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Checkout</Button>
-              <Button onClick={closewindow} color="inherit" sx={{color:'#232D4B', marginLeft: "755px" }}>Close</Button>
-            </DialogActions>
-          </Dialog>
 
         </Toolbar>
       </AppBar>
