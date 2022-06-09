@@ -7,7 +7,6 @@ import {Box} from '@mui/material'
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
-import Navbar from '../Navbar/Navbar.js'
 import { UuidContext } from '../../Contexts/uuidContext';
 
 function Registration() {
@@ -61,7 +60,6 @@ function Registration() {
     <div style={{
         backgroundColor: '#EBB075',
       }}>
-        <Navbar/>
         <br></br>
         <center>
         {!hasRegistered &&
@@ -119,7 +117,7 @@ function Registration() {
                     alignItems="center"
                     justifyContent="center">
                         <Typography>Already have an account?</Typography>
-                        <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
+                        <Link to='/' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button sx = {{color: "#EBB075"}}>Sign In</Button>
                         </Link>
                     </Grid>

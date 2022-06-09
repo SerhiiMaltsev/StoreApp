@@ -10,7 +10,6 @@ import {Box} from '@mui/material'
 import Description from './Description.js'
 import { animateScroll as scroll } from "react-scroll";
 import ArrowCircleDownTwoToneIcon from '@mui/icons-material/ArrowCircleDownTwoTone';
-import Navbar from '../Navbar/Navbar.js'
 
 function Login() {
   const userNameRef = useRef(null);
@@ -62,7 +61,6 @@ function Login() {
 
   return (
     <>
-      <Navbar/>s
       <div style={{ backgroundImage: "url(/cropped_edit_uva.png)", display: 'flex', flexDirection: 'row', alignContent: 'center' }}>
         { user ? <Home /> :
         <Grid

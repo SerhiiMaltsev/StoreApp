@@ -42,7 +42,7 @@ router.get("/userProducts", async (req, res, next) => {
   docs.forEach((doc) => userProducts.push({ id: doc.id, ...doc.data()} ))
   console.log(userProducts)
   res.json({result: userProducts})
-}
+})
 
 router.put("/addToCart", async (req, res, next) => {
   const user=req.body.user;
