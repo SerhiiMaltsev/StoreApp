@@ -14,7 +14,7 @@ function Product(props) {
                 image={placeholderImage}
                 alt='Artist Picture Not Found'>
           <Typography variant ='h6'>
-                Name: {props.name}
+                Name: {props.productName}
                 Cost: {props.price}
                 Seller: {props.seller}
             </Typography>     

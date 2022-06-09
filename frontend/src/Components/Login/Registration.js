@@ -3,10 +3,11 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Typography from '@mui/material/Typography';
+import {Box} from '@mui/material'
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
-import ButtonAppBar from '../Navbar/Navbar.js'
+import Navbar from '../Navbar/Navbar.js'
 import { UuidContext } from '../../Contexts/uuidContext';
 
 function Registration() {
@@ -57,59 +58,79 @@ function Registration() {
   }
 
   return (
-    <div>
-    {user==="Guest User" | user===null ?
-    <ButtonAppBar sx={{marginBottom: "20px"}}/> : 
-    <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
-      textAlign: "center", backgroundColor: '#F84C1E'}}>UVA MarketPlace</h1>
-    } <br></br><br></br>
-    <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
-      textAlign: "center", backgroundColor: '#F84C1E', padding: "10px"}}>Registration</h1> <br></br> <hr></hr> <br></br>
+    <div style={{
+        backgroundColor: '#EBB075',
+      }}>
+        <Navbar/>
+        <br></br>
         <center>
         {!hasRegistered &&
-            <div style={{alignContent: 'center'}}>
-                <form onSubmit={addUser} style={{alignContent: 'center'}}>
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Username"
-                        inputRef={userNameRef}
-                    /> <br></br><br></br>
+                <Box sx = {{
+                    width: 400, 
+                    height: 470, 
+                    borderRadius: 3, 
+                    padding: 6,
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    backgroundColor: 'white',}}>
+                <h1 style={{textAlign: "center"}}>New User Registration</h1> 
+                <div style={{alignContent: 'center'}}>
+                    <form onSubmit={addUser} style={{alignContent: 'center'}}>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Username"
+                            inputRef={userNameRef}
+                        /> <br></br><br></br>
 
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Email"
-                        inputRef={emailRef}
-                    /> <br></br><br></br>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Email"
+                            inputRef={emailRef}
+                        /> <br></br><br></br>
 
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Password"
-                        inputRef={passwordRef}
-                        type="password"
-                    /> <br></br><br></br>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Password"
+                            inputRef={passwordRef}
+                            type="password"
+                        /> <br></br><br></br>
 
-                    <TextField varient='outlined'
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Confirm Password"
-                        inputRef={confirmPasswordRef}
-                        type="password"
-                    /> <br></br><br></br>
+                        <TextField 
+                            id="filled-basic"
+                            variant="filled"
+                            label="Confirm Password"
+                            inputRef={confirmPasswordRef}
+                            type="password"
+                        /> <br></br><br></br>
 
-                    <Button type="submit" variant='outlined'
-                        sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Register
-                    </Button>
-                </form>
-            </div>
+                        <Button type="submit" variant='filled'
+                            sx={{ backgroundColor: '#EBB075', color: '#000000', borderColor: '#000000', width: "195px" }}>Register
+                        </Button>
+                    </form>
+                    <br></br>
+                    <Grid 
+                    container
+                    spacing={0}
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center">
+                        <Typography>Already have an account?</Typography>
+                        <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
+                        <Button sx = {{color: "#EBB075"}}>Sign In</Button>
+                        </Link>
+                    </Grid>
+                </div>
+                </Box>
         }
         {hasRegistered &&
             <center>
                 <div>
-                    <p>Congratulations {userName}, Welcome to UVA MarketPlace</p>
-                    <Link to='/' style={{textDecoration: 'none', justifyContent:'center' }}>
+                    <p>Congratulations {userName}, Welcome to UVA MarketPlace!</p>
+                    <Link to='Home' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button
                             variant='outlined'
                             sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}> Continue To the Home Page <br></br>
