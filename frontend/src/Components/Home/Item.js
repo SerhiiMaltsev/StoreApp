@@ -24,7 +24,7 @@ function Item(props) {
           break;
         }
       }
-      alert(cart)
+      //alert(cart)
     }, [allUsers])
 
 
