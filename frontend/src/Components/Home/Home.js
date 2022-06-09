@@ -5,6 +5,7 @@ import uuid from "react-uuid"
 import ButtonAppBar from "../Navbar/Navbar.js"
 import ClippedDrawer from "./SideBar.js"
 import axios from 'axios'
+import { Helmet } from 'react-helmet';
 
 function Home() {
 
@@ -23,6 +24,8 @@ function Home() {
 
   return (
     <div className="Home">
+      <Helmet><title>Home</title></Helmet>
+
       <ClippedDrawer/>
     </div>
   )

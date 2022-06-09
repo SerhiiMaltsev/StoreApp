@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import { UserContext} from '../../Contexts/userContext';
 import Home from "../Home/Home.js"
+import Helmet from "react-helmet"
 
 
 function Login() {
@@ -30,7 +31,7 @@ function Login() {
     for(let i=0; i<allUsers.length; i++) {
       if(allUsers[i].name===userNameRef.current.value && allUsers[i].password===passwordRef.current.value) {
         userFound=true;
-        console.log("found")
+        //console.log("found")
         break;
       }
     }
@@ -54,6 +55,7 @@ function Login() {
 
   return (
     <div>
+      <Helmet><title>Log In</title></Helmet>
       { user ? <Home /> :
       <div style={{fontFamily: 'Georgia, serif'}}>
       <h1 style={{color: '#232D4B', fontFamily: 'Georgia, serif',
