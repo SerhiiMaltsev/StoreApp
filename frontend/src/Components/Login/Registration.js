@@ -7,6 +7,7 @@ import {Box} from '@mui/material'
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { UserContext} from '../../Contexts/userContext';
+import Navbar from '../Navbar/Navbar.js'
 import { UuidContext } from '../../Contexts/uuidContext';
 
 function Registration() {
@@ -60,9 +61,11 @@ function Registration() {
     <div style={{
         backgroundColor: '#EBB075',
       }}>
-        <br></br>
+        <Navbar/>
+        <br></br> <br></br> <br></br> <br></br>
         <center>
         {!hasRegistered &&
+            <div>
                 <Box sx = {{
                     width: 400, 
                     height: 470, 
@@ -124,24 +127,52 @@ function Registration() {
                     </Grid>
                 </div> <br></br><br></br>
                 </Box>
+                <Box sx = {{
+                    width: 400, 
+                    height: 470, 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    backgroundColor: '#EBB075',}}>
+                </Box>
+            </div>
         }
         {hasRegistered &&
             <center>
                 <div>
-                    <p>Congratulations {userName}, Welcome to UVA MarketPlace!</p>
+                    <Box sx = {{
+                    width: 600, 
+                    height: 270, 
+                    display: 'flex', 
+                    padding: 6,
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    backgroundColor: 'white',}}>
+                    <h3>Thanks for signing up, {userName}! </h3>
+                    <h1> Welcome to UVA MarketPlace!</h1>
+                    <br></br> <br></br>
                     <Link to='/' style={{textDecoration: 'none', justifyContent:'center' }}>
                         <Button
                             variant='outlined'
-                            sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}> Continue To the Home Page <br></br>
+                            sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#EBB075', fontFamily: 'Georgia, serif'}}> Continue To the Home Page <br></br>
                         </Button>
-                    </Link> <br></br><br></br>
+                    </Link> 
+                    </Box>
+                    <br></br><br></br>
+                    <Box sx = {{
+                    width: 400, 
+                    height: 670, 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    backgroundColor: '#EBB075',}}>
+                    </Box>
                 </div>
             </center>
         }
         </center>
     </div>
   )
-  </div>
-};
+}
 
 export default Registration;
