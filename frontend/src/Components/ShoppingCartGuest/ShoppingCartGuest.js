@@ -46,6 +46,7 @@ function ShoppingCartGuest() {
   }, [])
 
   const deleteItem = async (name) => {
+    console.log(name)
     await axios.put("http://localhost:9000/cartsguests/deleteitem", {
       uuid: document.cookie,
       name: name

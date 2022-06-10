@@ -43,10 +43,11 @@ router.put("/deleteitem", async (req, res, next) => {
 
   var nameOfItem = req.body.name
   var price = req.body.price
-
-  var updItem = {};
+  console.log("name "+nameOfItem)
+  console.log("price " +price)
+  var updItem = {}; 
   updItem[nameOfItem] = deleteField();
-
+  console.log(updItem)
   await updateDoc(newItem, updItem);
 })
 
@@ -55,14 +56,11 @@ router.put("/getitems", async(req, res, next) => {
   const carts=[]
   var yourCart = {cart: ""}
 
-  console.log("This API CALL")
-
   const allCarts = await getDocs(collection(db, "shoppingCartGuests"))
   allCarts.forEach((doc) => carts.push({ uuid: doc.uuid, ...doc.data()} ))
 
   for (let i = 0; i < carts.length; i++) {
-    console.log("123" + carts[i].uuid)
-    console.log("234" + req.body.uuid)
+  
     if (carts[i].uuid === req.body.uuid){
       yourCart["cart"] = carts[i]
     }

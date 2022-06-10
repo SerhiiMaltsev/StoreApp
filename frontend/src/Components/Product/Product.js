@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Paper, Box, Stack, Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 
 
@@ -6,21 +6,24 @@ function Product(props) {
   const placeholderImage = "https://icons-for-free.com/iconfiles/png/512/goods+item+label+product+tag+tally+icon-1320168020112074005.png"
   return (
     <div>
-      <Card variant="elevation" sx={{m: 2}} onClick={props.onClick} style={{}}> 
+      <div className="Item">
+      <Box
+      sx={{
+        display: 'flex',
+        minWidth: 500,
+      }}
+    >
+      <Card sx={{ minWidth: 275 }}>
         <CardContent>
-          <CardMedia component="img"
-                height='240'
-                width='200'
-                image={placeholderImage}
-                alt='Picture Not Found'>
-          <Typography variant ='h6'>
-                Name: {props.product.productName}
-                Cost: {props.product.price}
-                Seller: {props.product.seller}
-            </Typography>     
-          </CardMedia>
-        </CardContent>
-      </Card>
+          <h3>{props.product.productName}</h3>
+          <p>price: ${props.product.price}</p>
+          <p>Category: {props.product.category}</p>
+          <p>Listed by: {props.product.seller}</p>
+          <p>Details: {props.product.details}</p>
+          </CardContent>
+          </Card>
+        </Box>
+      </div> 
     </div>
   )
 }

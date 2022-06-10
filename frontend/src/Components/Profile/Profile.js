@@ -1,8 +1,7 @@
 import React from 'react'
-
 import axios from 'axios'
 import { useEffect, useState, useContext } from 'react'
-import { Typography, Box, Divider, Grid } from '@mui/material'
+import { Typography, Box, Divider, Grid, Stack } from '@mui/material'
 import { Container } from '@mui/system'
 import Product from '../Product/Product'
 import { UserContext} from '../../Contexts/userContext';
@@ -19,27 +18,28 @@ function Profile(props) {
    useEffect(() =>{
     // console.log(user)
      axios.get(`${BASE_URL}users/userProducts?seller=${user}`)
-    .then((res) => res.json)
+    .then((res) => res.data)
     .then((text) => setUserProducts(text.result))
     .catch((err) => console.log(err))
    },[])
-  
+  //console.log(userProducts)
   return (
     <div>
       <Helmet><title>Profile Page</title></Helmet>
 
-      <Typography variant='h3' style={{textAlign: "right", padding: '10', fontWeight: 'bold', letterSpacing: '3px'}}>{user}</Typography>
+      <br></br> <br></br><br></br>
+     
+      <Typography variant='h3' style={{ color: '#232D4B', textAlign: "right", padding: '10', fontWeight: 'bold', letterSpacing: '3px'}}>{user}</Typography>
       <Box display='flex' flexDirection='row'>
-        <Typography>Your products for sale</Typography>
+        <Typography style={{fonteight: "bold"}}>Your products</Typography>
         <Divider ></Divider>
+
             <Container maxWidth='false' sx={{m: 2}} style={{ padding: '0px', overflow: 'auto'}}>
-            <Grid className="Products" container spacing={10}>
-          {Object.keys(userProducts).map((keyName, i) => (
-            <Grid className="Product" item xs={2.5}>
-              <Item product={userProducts[i]}/>
-            </Grid>
-          ))}
-        </Grid>
+            <Stack direction='row'>
+              {userProducts.map((product) => {
+                return(<Product key={product.id} product={product}/>)
+              })}
+            </Stack>
             </Container>
         
       </Box>
