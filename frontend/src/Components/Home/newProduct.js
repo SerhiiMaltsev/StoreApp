@@ -9,7 +9,7 @@ import ButtonAppBar from '../Navbar/Navbar.js'
 
 function NewProduct() {
     let navigate= useNavigate();
-    const categories = ["Apparel", "Clothing", "Electrionics" , "Kitchen Supplies", "Accessories", 
+    const categories = ["Apparel", "Furniture", "Electrionics" , "Kitchen Supplies", "Accessories", 
     "University Apparel", "School Supplies", "TextBooks", "Sports Apparel", "Health and Wellness", "Miscellaneous"]
     const { user, setUser } = useContext(UserContext);
     const productNameRef = useRef(null);
