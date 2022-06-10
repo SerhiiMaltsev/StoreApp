@@ -12,7 +12,7 @@ function Item(props) {
 
 
   useEffect(() => {
-    fetch("http://localhost:9000/users/getUsers")
+    fetch("/users/getUsers")
       .then((res) => res.json())
       .then((text) => setAllUsers(text.result))
       .catch((err) => console.log(err))
@@ -41,14 +41,14 @@ function Item(props) {
     const addToCart = async () => {
         console.log()
         if (user!=="Guest User") {
-          await axios.put("http://localhost:9000/users/addToCart", {
+          await axios.put("/users/addToCart", {
             productID: props.product.id,
             user: user
           })
           .then((res) => console.log(res.data))
           .catch((err) => console.log(err))
         } else {
-          await axios.put("http://localhost:9000/cartsguests/additem", {
+          await axios.put("/cartsguests/additem", {
             productID: props.product.id,
             uuid: document.cookie,
             name: props.product.productName,

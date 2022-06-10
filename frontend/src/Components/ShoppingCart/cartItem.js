@@ -12,7 +12,7 @@ function CartItem(props) {
   const removeCart = async () => {
     console.log()
     if (user!=="Guest User") {
-      await axios.put("http://localhost:9000/users/removeFromCart", {
+      await axios.put("/users/removeFromCart", {
         productID: props.product.id,
         user: user
       })

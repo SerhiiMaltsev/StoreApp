@@ -38,7 +38,7 @@ function Registration() {
         confirmPasswordRef.current.value = ""
         return;
     }
-    axios.put("http://localhost:9000/users/addUser", {
+    axios.put("/users/addUser", {
         name: userNameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value,

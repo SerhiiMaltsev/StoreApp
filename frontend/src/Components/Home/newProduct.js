@@ -19,7 +19,7 @@ function NewProduct() {
 
     const addProduct = (e) => {
         e.preventDefault();
-        axios.put("http://localhost:9000/products/addProduct", {
+        axios.put("/products/addProduct", {
             user: user,
             name: productNameRef.current.value,
             category: catRef.current.value,

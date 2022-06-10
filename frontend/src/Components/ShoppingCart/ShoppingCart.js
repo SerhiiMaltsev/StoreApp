@@ -14,12 +14,12 @@ function ShoppingCart() {
   const [subTotal, setSubtotal] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:9000/users/getUsers")
+    fetch("/users/getUsers")
     .then((res) => res.json())
     .then((text) => setAllUsers(text.result))
     .catch((err) => console.log(err))
 
-    fetch("http://localhost:9000/products/allProducts")
+    fetch("/products/allProducts")
     .then((res) => res.json())
     .then((text) => setProducts(text.result))
     .catch((err) => console.log(err))
