@@ -1,8 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore } = require("firebase/firestore");
 require("dotenv").config()
- 
-const serviceAccount = require("../permissions.json");
 
 const app = initializeApp(
     {
