@@ -173,6 +173,9 @@ export default function ClippedDrawer() {
           <Button onClick={listProductClick} color="inherit" sx={{color:'#232D4B'}}>List Product</Button>
           }
           <Button onClick={profileClick} color="inherit" sx={{color:'#232D4B'}}>Profile</Button>
+          {user!=='Guest User' &&
+          <Button onClick={logoutClick} color="inherit" sx={{color:'#232D4B', marginLeft: "755px"}}>Logout</Button>
+          }
 
         </Toolbar>
       </AppBar>
