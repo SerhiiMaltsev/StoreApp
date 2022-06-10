@@ -74,4 +74,33 @@ router.put("/addToCart", async (req, res, next) => {
 
 })
 
+router.put("/removeFromCart", async (req, res, next) => {
+  const user=req.body.user;
+  const productID=req.body.productID;
+
+  const allUsers=[]
+  const docs = await getDocs(collection(db, "users"))
+  docs.forEach((doc) => allUsers.push({ id: doc.id, ...doc.data()} ))
+
+  var userID=""
+  for(let i=0; i<allUsers.length; i++) {
+    if(allUsers[i].name===user) {
+      userID=allUsers[i].id
+    }
+  }
+
+  const postRef = doc(db, "users", userID);
+  const docSnap = await getDoc(postRef);
+  const arr = docSnap.data().cart;
+  const index = arr.indexOf(productID);
+  arr.splice(index, 1)
+  await updateDoc(postRef, {
+      cart: arr
+  });
+  res.send("Updated")
+
+
+})
+
+
 module.exports = router;
