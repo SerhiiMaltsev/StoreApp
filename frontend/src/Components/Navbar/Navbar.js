@@ -44,7 +44,6 @@ export default function ButtonAppBar() {
           <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
         }
         <Button onClick={homeClick} color="inherit" sx={{color:'#232D4B'}}>Home</Button>
-        <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Shop</Button>
         <Button onClick={shoppingCartClick} color="inherit" sx={{color:'#232D4B'}}>Cart</Button>
         {user==='Guest User' &&
         <Button onClick={registerClick} color="inherit" sx={{color:'#232D4B'}}>Register</Button> 
