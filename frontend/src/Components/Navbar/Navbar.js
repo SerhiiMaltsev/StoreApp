@@ -42,7 +42,9 @@ export default function ButtonAppBar() {
     <Box>
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor:'#F84C1E'}}>
       <Toolbar>
-        <Button onClick = {homeClick}sx={{color:'#232D4B', fontSize: '18px'}} >UVA Market Place</Button> <br></br>
+      <Typography variant="h6" component="div" sx={{color:'#232D4B', marginRight: "125px"}}>
+            UVA Market Place
+          </Typography> <br></br>
         {user==='Guest User' &&
           <Button onClick={loginClick} color="inherit" sx={{color:'#232D4B'}}>Login</Button>
         }
