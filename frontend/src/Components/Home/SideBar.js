@@ -187,17 +187,17 @@ export default function ClippedDrawer() {
         }}
       >
         <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
+        <Box sx={{ overflow: 'auto', margin: 5, }}>
           <div className="SearchElems">
             <TextField id="Search-bar" label="Search" variant="outlined" onChange={(e) => {setSearchInput(e.target.value)}} sx={{marginTop: "30px"}}/>
             <div className="SearchButton">
               <Button variant="contained" onClick={search} sx={{ color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Search</Button>
               <Button variant="contained" onClick={reset} sx={{ marginTop: "2vh", color: '#232D4B', borderColor: '#232D4B', width: "195px", backgroundColor: '#F84C1E', fontFamily: 'Georgia, serif'}}>Reset</Button>
               {user!=="Guest User" &&
-              <h1>Logged In As: {user}</h1>
+              <h2>Logged In As: {user}</h2>
             }
             {user==="Guest User" &&
-              <h1>Currently Not Logged In </h1>
+              <h2>Currently Not Logged In </h2>
             }
             </div>
           </div>
